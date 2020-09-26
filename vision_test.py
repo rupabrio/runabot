@@ -1,6 +1,7 @@
 import cv2
 import pyautogui
 import numpy
+from time import sleep
 
 barra_test = {'img' : './data/barra_test.png', 'reg' : (0, 0, 50, 40)}
 
@@ -17,4 +18,12 @@ def matchear_imagen(reg, imagen):
     print('la barra esta en otro lado')
     return False
 
-matchear_imagen(barra_test['reg'], barra_test['img'])
+test = matchear_imagen(barra_test['reg'], barra_test['img'])
+
+if (test):
+	cords = pyautogui.locateOnScreen('./data/barra_test.png', confidence=0.82)
+	print(cords)
+	pyautogui.moveTo(cords[0] + 10 , cords[1] + 10, 0)
+	print('clickeare en windows')
+	sleep(4)
+	pyautogui.click()
